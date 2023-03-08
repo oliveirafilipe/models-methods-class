@@ -1,0 +1,38 @@
+@startuml
+
+actor User as customer
+
+node "Frontend" {
+   [Routes] as Routes
+   [Pages] as Pages
+   [Components] as Components
+   [API Services] as API
+   Pages -u-> Routes
+   Pages -l-> Components
+   Pages -> API
+}
+
+node "Backend" {
+   [Routes] as Routes2
+   [DTOs] as DTOs
+   [Controllers] as Controllers
+   [Services] as Services
+   [Repositories] as Repos
+   [Models] as Models
+   API -> Routes2
+   Routes2 -> DTOs
+   DTOs -d-> Controllers
+   Controllers -r-> Services
+   Services -d-> Repos
+   Services ..> Models
+   Repos .r.> Models
+}
+   Repos -l-> Postgres
+
+database "Postgres" {
+}
+
+customer -d-> Routes
+@enduml
+
+//www.plantuml.com/plantuml/png/VP8xRiCm38PtdOB8xWmzW94-KA13KQEFgUYWsa9WL1O3YkvIvEwbAHEAbqmclz-KFj0-PFR4ynITypqZmKSE13v3FsV6AP1p2OS0kqV2n24DE_Xp0F3vYZE7_BMyMagbdJ-kK2jbzpYTC8N49QYjfhVT4xm5-XtxTL2016KUchbfw_a6ey3DCHQqEdqsvplV_rnJlb7yyFvIe1Hcd9Wmna0bg7t9DxxMb2l22VF8IEEQAj3eMPHYWLeg5Tt5kkfOATHyz0dD86GhSj5AJf9VkbYja-gnnVjzMqKq5qOLdYlMXNUO-KXojXiy-s-VPS76PCFBrksVqIljinr26kOf_WC0
